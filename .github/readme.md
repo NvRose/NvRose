@@ -26,6 +26,12 @@ Minimalistic and aesthetic UI.
 ~/.config/nvim after installation is git repository, just ```git pull``` and fix merge conflicts. <br>
 
 ### Plugins
+- Core:
+	- [NvRose/statusline.nvim](https://github.com/NvRose/statusline.nvim) - NvRose statusline
+	- [NvRose/terminal.nvim](https://github.com/NvRose/terminal.nvim) - NvRose terminal
+	- [NvRose/tabline.nvim](https://github.com/NvRose/tabline.nvim) - NvRose tabline
+	- [NvRose/resize.nvim](https://github.com/NvRose/resize.nvim) - NvRose resize
+
 - Base:
 	- [wbthomason/packer.nvim](https://github.com/wbthomason/packer.nvim) - plugins manager.
 	- [NvRose/terminal.nvim](https://github.com/NvRose/terminal.nvim) - simple terminal emulator plugin.
