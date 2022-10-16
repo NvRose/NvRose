@@ -15,6 +15,8 @@ use {
 	run = ':CatppuccinCompile',
 	config = function()
 		require('catppuccin').setup {
+			transparent_background = true,
+			term_colors = true,
 			integrations = {
 				treesitter = true,
 				telescope  = true,
@@ -24,12 +26,12 @@ use {
 			custom_highlights = {
 				StatusLine = { bg = "NONE", fg = "#1e1e2e" },
 				StatusLineNC = { bg = "NONE", fg = "#1e1e2e" },
+				NormalFloat = { bg = "#1e1e2e" },
+				Pmenu = { bg = "#1e1e2e" }
 			},
 
 			highlight_overrides = {
 				CursorLine = { bg = "NONE" },
-				NormalFloat = { bg = "NONE" },
-				Pmenu = { bg = "#1e1e2e" }
 			}
 		}
 
