@@ -7,10 +7,9 @@
 Neovim's lua config aiming to provide small but very fast IDE. <br>
 Cached and compiled plugins and if possible lazy loaded. <br>
 Minimalistic and aesthetic UI.
-</p>
+</p>	
 
-### Showcase
-![image](https://user-images.githubusercontent.com/93622468/196038891-fa626204-bfad-4fd7-ab39-bba78bfb859e.png)
+<img src='https://user-images.githubusercontent.com/93622468/196038891-fa626204-bfad-4fd7-ab39-bba78bfb859e.png'>
 
 
 ### Pre-requisites
@@ -26,7 +25,7 @@ Minimalistic and aesthetic UI.
 ``` $ git clone https://github.com/NvRose/NvRose ~/.config/nvim --depth 1```
 
 ### Updating
-~/.config/nvim after installation is git repository, just ```git pull``` and fix merge conflicts. <br>
+``` $ git -C ~/.config/nvim pull origin master --rebase ```
 
 ### Plugins
 - Core:
@@ -70,13 +69,11 @@ Minimalistic and aesthetic UI.
 - Disabled neovim builtin providers
 - Handy api bindings
 
-### Roadmap
-- Self update plugin
-
 ### 📜 License
 NvRose is released under MIT license, which grants the following permissions:
 - Commercial use
 - Distribution
 - Modification
-- Private use <br>
+- Private use
+
 For more details see [license](https://github.com/NvRose/terminal/license).
