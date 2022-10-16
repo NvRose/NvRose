@@ -10,6 +10,13 @@ use {
 }
 
 use {
+	"NvRose/statusline.nvim",
+ 	config = function()
+		opt.stl = "%!v:lua.require('statusline').run()"
+	end
+}
+
+use {
 	'catppuccin/nvim',
 	as = 'catppuccin',
 	run = ':CatppuccinCompile',
@@ -24,8 +31,6 @@ use {
 			},
 
 			custom_highlights = {
-				StatusLine = { bg = "NONE", fg = "#1e1e2e" },
-				StatusLineNC = { bg = "NONE", fg = "#1e1e2e" },
 				NormalFloat = { bg = "#1e1e2e" },
 				Pmenu = { bg = "#1e1e2e" }
 			},
@@ -68,7 +73,6 @@ use {
 				mappings = {
 					i = {
 						["<esc>"] = actions.close,
-						["<cr>"] = actions.select_tab
 					}
 				},
 			},
@@ -239,7 +243,7 @@ diagnostic.config {
 g.mapleader   = ' '
 opt.clipboard = 'unnamedplus'
 opt.wrap      = false
-opt.ls        = 0
+opt.ls        = 3
 opt.ru	      = false
 opt.smd	      = false
 opt.cul       = true
@@ -247,8 +251,10 @@ opt.nu        = true
 opt.sb        = true
 opt.spr       = true
 opt.scl       = 'number'
+opt.tgc       = true
 opt.ch        = 0
 opt.ut        = 250
+opt.shm:append "scIaWqC"
 
 -- KEY MAPPINGS --
 
