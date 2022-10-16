@@ -246,6 +246,7 @@ opt.sb        = true
 opt.spr       = true
 opt.scl       = 'number'
 opt.ch        = 0
+opt.ut        = 250
 
 -- KEY MAPPINGS --
 

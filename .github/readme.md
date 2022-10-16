@@ -53,8 +53,6 @@ Minimalistic and aesthetic UI.
 	- Self update plugin
 - TODO:
 	- [ ] - Builtin tabs and statusbar plugins
-- FIXME:
-	- Fix hover lsp diagnostic window
 
 ### 📜 License
 NvRose is released under MIT license, which grants the following permissions:
