@@ -10,9 +10,16 @@ use {
 }
 
 use {
-	"NvRose/statusline.nvim",
+	'NvRose/statusline.nvim',
  	config = function()
-		opt.stl = "%!v:lua.require('statusline').run()"
+		require('statusline').setup()
+	end
+}
+
+use {
+	'NvRose/tabline.nvim',
+	config = function()
+		opt.tal = '%!v:lua.require("tabline").run()'
 	end
 }
 

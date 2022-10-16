@@ -6,8 +6,21 @@ Cached and compiled plugins and if possible lazy loaded. <br>
 Minimalistic and aesthetic UI.
 </p>
 
+### Showcase
+![image](https://user-images.githubusercontent.com/93622468/196038891-fa626204-bfad-4fd7-ab39-bba78bfb859e.png)
+
+
+### Pre-requisites
+- Neovim nightly
+- Nerd font in your terminal emulator
+
+### Semi-optional
+- Telescope
+	- ripgrep
+	- fd
+
 ### Installation
-``` $ git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1```
+``` $ git clone https://github.com/NvRose/NvRose ~/.config/nvim --depth 1```
 
 ### Updating
 ~/.config/nvim after installation is git repository, just ```git pull``` and fix merge conflicts. <br>
@@ -49,10 +62,7 @@ Minimalistic and aesthetic UI.
 - Handy api bindings
 
 ### Roadmap
-- WIP:
-	- Self update plugin
-- TODO:
-	- [ ] - Builtin tabs and statusbar plugins
+- Self update plugin
 
 ### 📜 License
 NvRose is released under MIT license, which grants the following permissions:
