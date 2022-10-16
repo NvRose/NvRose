@@ -19,7 +19,31 @@ use {
 use {
 	'NvRose/tabline.nvim',
 	config = function()
-		opt.tal = '%!v:lua.require("tabline").run()'
+		require('tabline').setup()
+	end
+}
+
+-- instand of netrw plugins
+use {
+	'nvim-tree/nvim-tree.lua',
+	requires = { 'nvim-tree/nvim-web-devicons' },
+	tag = 'nightly',
+	cmd = {
+		'NvimTreeToggle',
+		'NvimTreeFocus',
+		'NvimTreeFindFile',
+		'NvimTreeCollapse'
+	},
+	config = function()
+		require("nvim-tree").setup {
+			auto_reload_on_write = false,
+			hijack_netrw = false,
+			create_in_closed_folder = false,
+			view = {
+				hide_root_folder = true,
+			},
+			git = { enable = false },
+		}
 	end
 }
 
@@ -34,15 +58,20 @@ use {
 			integrations = {
 				treesitter = true,
 				telescope  = true,
-				cmp        = true
+				cmp        = true,
+				nvimtree   = true
 			},
 
 			custom_highlights = {
 				NormalFloat = { bg = "#1e1e2e" },
-				Pmenu = { bg = "#1e1e2e" }
-			},
-
-			highlight_overrides = {
+				Pmenu = { bg = "#1e1e2e" },
+				Tab = { fg = "#a6afc8" },
+				TabSel = { fg = "#a6e3a1", style = { "bold" } },
+				NormalMode = { fg = "#a6e3a1", style = { "bold" } },
+				InsertMode = { fg = "#89b4fa", style = { "bold" } },
+				CmdMode = { fg = "#f9e2af", style = { "bold" } },
+				TermMode = { fg = "#cba6f7", style = { "bold" }},
+				NvimTreeVertSplit = { fg = "#45475a" },
 				CursorLine = { bg = "NONE" },
 			}
 		}
@@ -104,8 +133,8 @@ use {
 			padding = true,
 			sticky = true,
 			ignore = nil,
-			opleader = { block = '<c-/>' },
-			toggler = { block = '<c-/>' }
+			opleader = { block = '<c-_>' },
+			toggler = { block = '<c-_>' }
 		}
 	end
 }
@@ -146,7 +175,7 @@ use {
 		'hrsh7th/cmp-nvim-lsp',
 		'hrsh7th/cmp-buffer',
 		'hrsh7th/cmp-path',
-		'L3MON4D3/LuaSnip',
+		{ 'L3MON4D3/LuaSnip', run = "make install_jsregexp" },
 		'saadparwaiz1/cmp_luasnip'
 
 	},
@@ -261,6 +290,7 @@ opt.scl       = 'number'
 opt.tgc       = true
 opt.ch        = 0
 opt.ut        = 250
+opt.hls       = false
 opt.shm:append "scIaWqC"
 
 -- KEY MAPPINGS --
@@ -274,10 +304,13 @@ map('n', 'gf', function()
 	}
 end)
 
+map('n', '<c-o>', '<cmd>NvimTreeToggle<cr>')
+
 local ts_builtin = require('telescope.builtin')
 map('n', '<c-n>', ts_builtin.find_files)
 map('n', '<c-f>', ts_builtin.live_grep)
 map('n', ';',     ts_builtin.command_history)
+map('n', '<c-\\>', require('terminal').new)
 
 -- AUTOMATIC COMMANDS --
 

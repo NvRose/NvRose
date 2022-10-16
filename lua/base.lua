@@ -122,7 +122,7 @@ function lsp_icons(icons)
 	end
 end
 
-vim.api.nvim_create_autocmd("CursorHold", {
+au("CursorHold", {
 	buffer = bufnr,
 	callback = function()
 		local opts = {
@@ -137,6 +137,18 @@ vim.api.nvim_create_autocmd("CursorHold", {
 			scope = 'cursor'
 		}
 		vim.diagnostic.open_float(nil, opts)
+	end
+})
+
+au("CmdlineEnter", {
+	callback = function()
+		opt.ch = 1
+	end
+})
+
+au("CmdlineLeave", {
+	callback = function()
+		opt.ch = 0
 	end
 })
 
