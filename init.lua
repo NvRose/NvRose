@@ -72,6 +72,7 @@ use {
 	run = ':CatppuccinCompile',
 	config = function()
 		require('catppuccin').setup {
+			transparent_background = true,
 			term_colors = true,
 			integrations = {
 				treesitter = true,
@@ -90,7 +91,6 @@ use {
 				InsertMode = { fg = "#89b4fa", style = { "bold" } },
 				CmdMode = { fg = "#f9e2af", style = { "bold" } },
 				TermMode = { fg = "#cba6f7", style = { "bold" }},
-				NvimTreeVertSplit = { fg = "#45475a" },
 				CursorLine = { bg = "NONE" },
 			}
 		}
@@ -331,6 +331,9 @@ opt.fdc       = "1"
 opt.si        = true
 opt.ic        = true
 opt.scs       = true
+opt.swf       = false
+opt.bk        = false
+opt.wb        = false
 opt.shm:append "scIaWqC"
 
 -- KEY MAPPINGS --
