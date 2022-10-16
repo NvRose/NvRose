@@ -1,6 +1,6 @@
 require 'base'
 
--- PLUGINS --
+-- CORE PLUGINS --
 
 use {
 	'NvRose/terminal.nvim',
@@ -23,26 +23,45 @@ use {
 	end
 }
 
--- instand of netrw plugins
 use {
-	'nvim-tree/nvim-tree.lua',
-	requires = { 'nvim-tree/nvim-web-devicons' },
-	tag = 'nightly',
-	cmd = {
-		'NvimTreeToggle',
-		'NvimTreeFocus',
-		'NvimTreeFindFile',
-		'NvimTreeCollapse'
-	},
+	"NvRose/resize.nvim",
+ 	config = function()
+		require("resize").setup()
+	end
+}
+
+
+-- OTHER PLUGINS --
+
+use {
+	'sidebar-nvim/sidebar.nvim',
 	config = function()
-		require("nvim-tree").setup {
-			auto_reload_on_write = false,
-			hijack_netrw = false,
-			create_in_closed_folder = false,
-			view = {
-				hide_root_folder = true,
+		require('sidebar-nvim').setup {
+			sections = { "datetime", "git", "diagnostics", "todos", "files" },
+
+			todos = {
+				icon = "",
+				ignored_paths = {'~'},
+				initially_closed = false,
 			},
-			git = { enable = false },
+
+			files = {
+        			icon = "",
+        			show_hidden = false,
+        			ignored_paths = {"%.git$"}
+    			}
+		}
+	end
+}
+
+use {
+	'rcarriga/nvim-notify',
+	config = function()
+		require('notify').setup {
+			background_colour = "#1e1e2e",
+			fps = 60,
+			render = 'minimal',
+			stages = 'slide'
 		}
 	end
 }
@@ -53,13 +72,13 @@ use {
 	run = ':CatppuccinCompile',
 	config = function()
 		require('catppuccin').setup {
-			transparent_background = true,
 			term_colors = true,
 			integrations = {
 				treesitter = true,
 				telescope  = true,
 				cmp        = true,
-				nvimtree   = true
+				nvimtree   = true,
+				notify     = true
 			},
 
 			custom_highlights = {
@@ -176,8 +195,8 @@ use {
 		'hrsh7th/cmp-buffer',
 		'hrsh7th/cmp-path',
 		{ 'L3MON4D3/LuaSnip', run = "make install_jsregexp" },
-		'saadparwaiz1/cmp_luasnip'
-
+		'saadparwaiz1/cmp_luasnip',
+		'hrsh7th/cmp-cmdline'
 	},
 	config = function()
 		local has_words_before = function()
@@ -246,6 +265,22 @@ use {
 				end
 			}
 		}
+
+		cmp.setup.cmdline({ '/', '?' }, {
+    			mapping = cmp.mapping.preset.cmdline(),
+    			sources = {
+      				{ name = 'buffer' }
+    			}
+  		})
+
+		cmp.setup.cmdline(':', {
+    			mapping = cmp.mapping.preset.cmdline(),
+    			sources = cmp.config.sources({
+      				{ name = 'path' }
+    			}, {
+      				{ name = 'cmdline' }
+    			})
+  		})
 	end
 }
 
@@ -276,6 +311,7 @@ diagnostic.config {
 
 -- NEOVIM OPTIONS --
 
+vim.notify = require('notify')
 g.mapleader   = ' '
 opt.clipboard = 'unnamedplus'
 opt.wrap      = false
@@ -291,6 +327,10 @@ opt.tgc       = true
 opt.ch        = 0
 opt.ut        = 250
 opt.hls       = false
+opt.fdc       = "1"
+opt.si        = true
+opt.ic        = true
+opt.scs       = true
 opt.shm:append "scIaWqC"
 
 -- KEY MAPPINGS --
@@ -304,13 +344,23 @@ map('n', 'gf', function()
 	}
 end)
 
-map('n', '<c-o>', '<cmd>NvimTreeToggle<cr>')
+map('n', '<c-o>', '<cmd>SidebarNvimToggle<cr>')
 
 local ts_builtin = require('telescope.builtin')
 map('n', '<c-n>', ts_builtin.find_files)
 map('n', '<c-f>', ts_builtin.live_grep)
 map('n', ';',     ts_builtin.command_history)
-map('n', '<c-\\>', require('terminal').new)
+
+-- splits moving
+map('n', '<c-h>', '<c-w>h')
+map('n', '<c-j>', '<c-w>j')
+map('n', '<c-k>', '<c-w>k')
+map('n', '<c-l>', '<c-w>l')
+
+map('n', '-', '<cmd>ResizeDown 5<cr>')
+map('n', '=', '<cmd>ResizeUp 5<cr>')
+map('n', '_', '<cmd>ResizeRight 5<cr>')
+map('n', '+', '<cmd>ResizeLeft 5<cr>')
 
 -- AUTOMATIC COMMANDS --
 
