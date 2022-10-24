@@ -3,7 +3,17 @@ require('NvRose') {
 	colorscheme = 'catppuccin',
 
 	base = {
-		['trim'] = true
+		['trim'] = {
+			enable = true,
+			trailing = true,
+			last_line = true,
+			first_line = true
+		},
+
+		['terminal'] = {
+			enable = true,
+			config = {}
+		}
 	},
 
 	plugins = {

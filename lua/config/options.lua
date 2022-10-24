@@ -8,5 +8,6 @@ return {
 	cursorline = true,
 	cmdheight = 0,
 	swapfile = false,
-	backup = false
+	backup = false,
+	ruler = false
 }

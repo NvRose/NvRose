@@ -1,3 +1,7 @@
 [submodule "trim"]
 	path = lua/NvRose/base/trim
 	url = https://github.com/NvRose/trim.nvim
+
+[submodule "terminal"]
+	path = lua/NvRose/base/terminal
+	url = https://github.com/NvRose/terminal.nvim
