@@ -1,13 +1,22 @@
--- Vim options
-
 return {
-	scrolloff = 4,
-	sidescrolloff = 8,
-	clipboard = "unnamedplus",
-	number = true,
-	cursorline = true,
-	cmdheight = 0,
-	swapfile = false,
-	backup = false,
-	ruler = false
+	clipboard 	= 'unnamedplus',
+	inccommand	= 'nosplit',
+	mouse		= 'a',
+	showmode	= false,
+	swapfile 	= false,
+	hlsearch	= false,
+	backup 		= false,
+	ruler 		= false,
+	termguicolors   = true,
+	number 		= true,
+	splitbelow 	= true,
+	cursorline 	= true,
+	breakindent	= true,
+	showtabline	= 2,
+	cmdheight 	= 0,
+	numberwidth	= 1,
+	laststatus	= 3,
+	scrolloff 	= 4,
+	sidescrolloff 	= 8,
+	updatetime	= 300
 }

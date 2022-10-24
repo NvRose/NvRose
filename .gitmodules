@@ -5,3 +5,15 @@
 [submodule "terminal"]
 	path = lua/NvRose/base/terminal
 	url = https://github.com/NvRose/terminal.nvim
+
+[submodule "statusline"]
+	path = lua/NvRose/base/statusline
+	url = https://github.com/NvRose/statusline.nvim
+
+[submodule "tabline"]
+	path = lua/NvRose/base/tabline
+	url = https://github.com/NvRose/tabline.nvim
+
+[submodule "resize"]
+	path = lua/NvRose/base/resize
+	url = https://github.com/NvRose/resize.nvim

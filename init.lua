@@ -13,6 +13,18 @@ require('NvRose') {
 		['terminal'] = {
 			enable = true,
 			config = {}
+		},
+
+		['statusline'] = {
+			enable = true
+		},
+
+		['tabline'] = {
+			enable = true
+		},
+
+		['resize'] = {
+			enable = true
 		}
 	},
 
