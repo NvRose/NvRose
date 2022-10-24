@@ -1,15 +1,33 @@
-local ok, catppuccin = pcall(require, 'catppuccin')
+local ok, catppuccin = pcall(require, "catppuccin")
 
 if ok then
-	catppuccin.setup {
+	catppuccin.setup({
+		transparent_background = true,
+		term_colors = true,
 		flavour = "mocha",
 
 		integrations = {
-			treesitter = true
+			treesitter = true,
+			telescope = true,
+			cmp = true,
 		},
 
 		indent = {
-			enable = true
-		}
-	}
+			enable = true,
+		},
+
+		custom_highlights = {
+			PmenuSel = { bg = "NONE", style = { "bold" } },
+
+			-- Statusline
+			NormalMode = { bg = "#a6e3a1", fg = "#1e1e2e", style = { "bold" } },
+			InsertMode = { bg = "#89b4fa", fg = "#1e1e2e", style = { "bold" } },
+			CmdMode = { bg = "#f9e2af", fg = "#1e1e2e", style = { "bold" } },
+			TermMode = { bg = "#cba6f7", fg = "#1e1e2e", style = { "bold" } },
+
+			-- Tabline
+			TabLine = { fg = "#a6afc8" },
+			TabLineSel = { bg = "#a6e3a1", fg = "#1e1e2e", style = { "bold" } },
+		},
+	})
 end

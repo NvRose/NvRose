@@ -1,4 +1,4 @@
-local core = require('NvRose.core')
+local core = require("NvRose.core")
 
 return function(config)
 	vim.cmd.colorscheme(config.colorscheme)
@@ -13,6 +13,12 @@ return function(config)
 
 	if config.bootstrap then
 		util.bootstrap()
+	end
+
+	if config.vim.lsp.enable then
+		config.plugins["neovim/nvim-lspconfig"] = {
+			config = core.lsp(config.vim.lsp),
+		}
 	end
 
 	vim.defer_fn(function()
