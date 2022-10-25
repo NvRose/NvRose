@@ -29,6 +29,8 @@ require("NvRose")({
 	},
 
 	plugins = {
+		["lewis6991/impatient.nvim"] = {},
+
 		["catppuccin/nvim"] = {
 			as = "catppuccin",
 			run = ":CatppuccinCompile",
@@ -41,6 +43,14 @@ require("NvRose")({
 			ft = { "lua", "c" },
 			run = ":TSUpdate",
 			event = "BufWinEnter",
+			cmd = {
+				"TSInstall",
+				"TSBufEnable",
+				"TSBufDisable",
+				"TSEnable",
+				"TSDisable",
+				"TSModuleInfo",
+			},
 			config = function()
 				require("plugins.treesitter")
 			end,
@@ -50,6 +60,7 @@ require("NvRose")({
 			requires = { "nvim-lua/plenary.nvim" },
 			tag = "0.1.0",
 			event = "BufWinEnter",
+			cmd = { "Telescope" },
 			config = function()
 				require("plugins.telescope")
 			end,
@@ -79,13 +90,15 @@ require("NvRose")({
 		},
 
 		["windwp/nvim-autopairs"] = {
-			event = "BufWinEnter",
+			ft = { "c", "lua" },
+			event = "InsertEnter",
 			config = function()
 				require("nvim-autopairs").setup()
 			end,
 		},
 
 		["jose-elias-alvarez/null-ls.nvim"] = {
+			ft = { "lua", "c" },
 			requires = { "nvim-lua/plenary.nvim" },
 			config = function()
 				require("plugins.null-ls")
@@ -100,7 +113,7 @@ require("NvRose")({
 		lsp = {
 			enable = true,
 			diagnostic_on_hover = true,
-			filetypes = { "c" },
+			filetypes = { "c", "lua" },
 
 			icons = {
 				["Error"] = "",

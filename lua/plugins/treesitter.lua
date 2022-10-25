@@ -1,14 +1,23 @@
-local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
+vim.api.nvim_create_autocmd({
+	"BufRead",
+	"BufWinEnter",
+	"BufNewFile",
+}, {
+	group = vim.api.nvim_create_augroup("LazyTreesitter", {}),
+	callback = function()
+		require("packer").loader("nvim-treesitter")
 
-if ok then
-	treesitter.setup {
-		indent = {
-			enable = true
-  		},
+		require("nvim-treesitter.configs").setup({
+			auto_install = false,
 
-		highlight = {
-			enable = true,
-			additional_vim_regex_highlighting = false
-		}
-	}
-end
+			indent = {
+				enable = true,
+			},
+
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = false,
+			},
+		})
+	end,
+})

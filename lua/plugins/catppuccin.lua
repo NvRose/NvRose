@@ -28,6 +28,7 @@ if ok then
 			-- Tabline
 			TabLine = { fg = "#a6afc8" },
 			TabLineSel = { bg = "#a6e3a1", fg = "#1e1e2e", style = { "bold" } },
+			TabLineModified = { bg = "#f9e2af", fg = "#1e1e2e" },
 		},
 	})
 end
