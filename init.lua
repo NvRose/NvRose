@@ -108,7 +108,7 @@ require("NvRose")({
 
 	vim = {
 		options = require("config.options"),
-		mappings = require("config.mappings"),
+		mappings = "config.mappings",
 
 		lsp = {
 			enable = true,

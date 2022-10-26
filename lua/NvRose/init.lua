@@ -1,5 +1,7 @@
 vim.defer_fn(function()
 	pcall(require, "impatient")
+
+	require("impatient").enable_profile()
 end, 0)
 
 local core = require("NvRose.core")
@@ -10,7 +12,7 @@ core.runtime()
 return function(config)
 	vim.cmd.colorscheme(config.colorscheme)
 
-	core.mappings(config.vim.mappings)
+	require(config.vim.mappings)
 
 	for option, value in pairs(config.vim.options) do
 		vim.o[option] = value

@@ -14,8 +14,4 @@ return function(base)
 	if base["tabline"].enable then
 		require("NvRose.base.tabline").setup(base["tabline"].config)
 	end
-
-	if base["resize"].enable then
-		require("NvRose.base.resize").setup()
-	end
 end
