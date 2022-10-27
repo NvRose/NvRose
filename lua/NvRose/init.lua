@@ -18,19 +18,18 @@ return function(config)
 		vim.o[option] = value
 	end
 
+	if config.vim.lsp.enable then
+		config.plugins["neovim/nvim-lspconfig"] = {}
+
+		core.lsp(config.vim.lsp)
+	end
+
 	vim.defer_fn(function()
 		if config.bootstrap then
 			require("NvRose.util").bootstrap()
 		end
 
 		core.base(config.base)
-
-		if config.vim.lsp.enable then
-			config.plugins["neovim/nvim-lspconfig"] = {
-				config = core.lsp(config.vim.lsp),
-			}
-		end
-
 		core.plugins(config.plugins)
 	end, 0)
 end

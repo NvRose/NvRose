@@ -6,13 +6,18 @@ return function(config)
 		vim.fn.sign_define(hl, { text = v, numhl = hl, texthl = hl })
 	end
 
-	local on_attach = function()
+	local on_attach = function(client, bufnr)
+		local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
 		for _, v in ipairs(config.mappings) do
-			vim.keymap.set(v[1], v[2], v[3])
+			vim.keymap.set(v[1], v[2], v[3], bufopts)
 		end
 	end
 
+	local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 	for k, v in pairs(config.servers) do
+		v.capabilities = capabilities
 		v.on_attach = on_attach
 		require("lspconfig")[k].setup(v)
 	end

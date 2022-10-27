@@ -19,6 +19,11 @@ if ok then
 		custom_highlights = {
 			PmenuSel = { bg = "NONE", style = { "bold" } },
 
+			LspDiagnosticsError = { bg = "#181825" },
+			LspDiagnosticsWarning = { bg = "#181825" },
+			LspDiagnosticsInfo = { bg = "#181825" },
+			LspDiagnosticsHint = { bg = "#181825" },
+
 			-- Statusline
 			NormalMode = { bg = "#a6e3a1", fg = "#1e1e2e", style = { "bold" } },
 			InsertMode = { bg = "#89b4fa", fg = "#1e1e2e", style = { "bold" } },

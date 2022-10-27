@@ -60,6 +60,7 @@ if ok then
 			{ name = "luasnip" },
 			{ name = "buffer" },
 			{ name = "path" },
+			{ name = "nvim_lsp_signature_help" },
 		}),
 
 		snippet = {

@@ -30,6 +30,7 @@ require("NvRose")({
 
 	plugins = {
 		["lewis6991/impatient.nvim"] = {},
+		["nvim-tree/nvim-web-devicons"] = {},
 
 		["catppuccin/nvim"] = {
 			as = "catppuccin",
@@ -113,7 +114,6 @@ require("NvRose")({
 		lsp = {
 			enable = true,
 			diagnostic_on_hover = true,
-			filetypes = { "c", "lua" },
 
 			icons = {
 				["Error"] = "",
@@ -143,16 +143,7 @@ require("NvRose")({
 			},
 
 			servers = {
-				clangd = {
-					cmd = {
-						"clangd",
-						"--background-index",
-						"--malloc-trim",
-						"--pch-storage=memory",
-						"--clang-tidy",
-					},
-				},
-
+				clangd = {},
 				pyright = {},
 
 				sumneko_lua = {
@@ -167,7 +158,6 @@ require("NvRose")({
 							},
 
 							workspace = {
-								-- Make the server aware of Neovim runtime files
 								library = vim.api.nvim_get_runtime_file("", true),
 							},
 

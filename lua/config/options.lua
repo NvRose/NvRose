@@ -13,6 +13,7 @@ return {
 	cursorline = true,
 	breakindent = true,
 	cmdheight = 0,
+	showtabline = 2,
 	numberwidth = 1,
 	laststatus = 3,
 	scrolloff = 4,
