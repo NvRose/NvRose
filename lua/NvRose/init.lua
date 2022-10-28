@@ -1,7 +1,5 @@
 vim.defer_fn(function()
 	pcall(require, "impatient")
-
-	require("impatient").enable_profile()
 end, 0)
 
 local core = require("NvRose.core")
@@ -14,14 +12,27 @@ return function(config)
 
 	require(config.vim.mappings)
 
-	for option, value in pairs(config.vim.options) do
-		vim.o[option] = value
-	end
-
 	if config.vim.lsp.enable then
 		config.plugins["neovim/nvim-lspconfig"] = {}
 
 		core.lsp(config.vim.lsp)
+	end
+
+	if config.autohide_cmd then
+		local group = vim.api.nvim_create_augroup("CmdlineLeave", {})
+		vim.api.nvim_create_autocmd("CmdlineEnter", {
+			group = group,
+			callback = function()
+				vim.opt.cmdheight = 1
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("CmdlineLeave", {
+			group = group,
+			callback = function()
+				vim.opt.cmdheight = 0
+			end,
+		})
 	end
 
 	vim.defer_fn(function()

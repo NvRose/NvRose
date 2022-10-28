@@ -1,6 +1,7 @@
 require("NvRose")({
 	bootstrap = false,
 	colorscheme = "catppuccin",
+	autohide_cmd = true,
 
 	base = {
 		["trim"] = {
@@ -12,7 +13,6 @@ require("NvRose")({
 
 		["terminal"] = {
 			enable = true,
-			config = {},
 		},
 
 		["statusline"] = {
@@ -143,7 +143,17 @@ require("NvRose")({
 			},
 
 			servers = {
-				clangd = {},
+				-- Examples
+				clangd = {
+					cmd = {
+						"clangd",
+						"--pch-storage=memory",
+						"--clang-tidy",
+						"--background-index",
+						"--header-insertion=iwyu",
+						"--malloc-trim",
+					},
+				},
 				pyright = {},
 
 				sumneko_lua = {
