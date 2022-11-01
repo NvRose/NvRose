@@ -6,27 +6,23 @@ return function(config)
 		vim.fn.sign_define(hl, { text = v, numhl = hl, texthl = hl })
 	end
 
-	local on_attach = function(client, bufnr)
-		local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	local lsp_ok, lspconfig = pcall(require, "lspconfig")
+	local cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 
-		for _, v in ipairs(config.mappings) do
-			vim.keymap.set(v[1], v[2], v[3], bufopts)
-		end
+	if not lsp_ok or not cmp_ok then
+		return nil
 	end
 
-	local capabilities = require("cmp_nvim_lsp").default_capabilities()
+	local capabilities = cmp_nvim_lsp.default_capabilities()
 
 	for k, v in pairs(config.servers) do
 		v.capabilities = capabilities
 		v.on_attach = on_attach
-		require("lspconfig")[k].setup(v)
+		lspconfig[k].setup(v)
 	end
-
-	local group = vim.api.nvim_create_augroup("lsp", { clear = true })
 
 	vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
-		group = group,
 		callback = function()
 			vim.diagnostic.open_float(nil, {
 				focusable = false,

@@ -1,8 +1,8 @@
-vim.cmd("packadd packer.nvim")
-
-local packer = require("packer")
-
 return function(plugins)
+	vim.cmd("packadd packer.nvim")
+
+	local packer = require("packer")
+
 	packer.init({
 		auto_clean = true,
 		compile_on_sync = true,
@@ -40,6 +40,41 @@ return function(plugins)
 			"PackerLoad",
 		},
 	})
+
+	packer.use({
+		"nvim-treesitter/nvim-treesitter",
+		event = { "BufRead", "BufWinEnter", "BufNewFile" },
+		cmd = {
+			"TSInstall",
+			"TSBufEnable",
+			"TSBufDisable",
+			"TSEnable",
+			"TSDisable",
+			"TSModuleInfo",
+		},
+		run = ":TSUpdateSync",
+		config = function()
+			require("plugins.treesitter")
+		end,
+	})
+
+	packer.use({
+		"williamboman/mason.nvim",
+		config = function()
+			require("mason").setup()
+		end,
+	})
+
+	packer.use({
+		"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("mason-lspconfig").setup()
+		end,
+	})
+
+	packer.use("lewis6991/impatient.nvim")
+
+	packer.use("neovim/nvim-lspconfig")
 
 	for plugin, options in pairs(plugins) do
 		table.insert(options, plugin)

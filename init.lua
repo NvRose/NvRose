@@ -1,12 +1,15 @@
 require("NvRose")({
-	-- Auto install packer
-	bootstrap = false,
+	-- Fresh install (comment/remove after installation)
+	bootstrap = true,
 
 	-- Colorcheme, can be nil
 	colorscheme = "duotone",
 
 	-- Hide cmd when not used (+1 line to see more code)
 	autohide_cmd = true,
+
+	-- :LuaCacheProfile
+	startup_profile = true,
 
 	-- Builtin plugins
 	base = {
@@ -24,10 +27,7 @@ require("NvRose")({
 
 	-- See plugins options at: https://github.com/wbthomason/packer.nvim
 	plugins = {
-		-- Caching no lazy loaded modules
-		["lewis6991/impatient.nvim"] = {},
-
-		-- Needed by tabline
+		-- Tabline icons (optional)
 		["nvim-tree/nvim-web-devicons"] = {},
 
 		-- Matchit and MatchParen better replacement
@@ -37,32 +37,12 @@ require("NvRose")({
 			end,
 		},
 
-		-- Welcome page (optional)
-		["glepnir/dashboard-nvim"] = {
-			config = function()
-				require("plugins.dashboard")
-			end,
-		},
-
 		-- Color hex strings etc (optional)
 		["norcalli/nvim-colorizer.lua"] = {
 			config = function()
 				require("colorizer").setup()
 			end,
 		},
-
-		-- Better colors (optional but highly recommended)
-		["nvim-treesitter/nvim-treesitter"] = {
-			run = ":TSUpdate",
-			config = function()
-				require("plugins.treesitter")
-			end,
-		},
-
-		-- Optional treesitter plugin
-		--[[ ["nvim-treesitter/playground"] = {
-			after = "nvim-treesitter",
-		}, ]]
 
 		-- Picker (optional)
 		["nvim-telescope/telescope.nvim"] = {
@@ -111,7 +91,6 @@ require("NvRose")({
 
 		-- Autoformat (optional)
 		["jose-elias-alvarez/null-ls.nvim"] = {
-			ft = { "lua", "c", "html", "javascript", "json", "css" },
 			requires = { "nvim-lua/plenary.nvim" },
 			config = function()
 				require("plugins.null-ls")

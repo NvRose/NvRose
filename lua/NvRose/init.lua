@@ -1,7 +1,4 @@
-vim.defer_fn(function()
-	pcall(require, "impatient")
-	require("impatient").enable_profile()
-end, 0)
+local impatient_ok, impatient = pcall(require, "impatient")
 
 local core = require("NvRose.core")
 
@@ -9,16 +6,22 @@ core.providers()
 core.runtime()
 
 return function(config)
-	vim.api.nvim_command("colorscheme " .. config.colorscheme)
-
-	if config.bootstrap then
-		require("NvRose.util.bootstrap")()
+	if config.colorscheme then
+		vim.api.nvim_command("colorscheme " .. config.colorscheme)
 	end
 
-	if config.vim.lsp.enable then
-		config.plugins["neovim/nvim-lspconfig"] = {
-			config = core.lsp(config.vim.lsp),
-		}
+	if config.startup_profile and impatient_ok then
+		impatient.enable_profile()
+	end
+
+	if config.bootstrap then
+		require("NvRose.util.bootstrap")(config.plugins)
+	else
+		core.plugins(config.plugins)
+	end
+
+	if config.base["tabline"].enable then
+		config.plugins["nvim-tree/nvim-web-devicons"] = {}
 	end
 
 	if config.autohide_cmd then
@@ -38,8 +41,6 @@ return function(config)
 		})
 	end
 
-	vim.defer_fn(function()
-		core.base(config.base)
-		core.plugins(config.plugins)
-	end, 0)
+	core.base(config.base)
+	core.lsp(config.vim.lsp)
 end
