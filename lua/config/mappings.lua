@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
-map("n", "<c-z>", "<Nop>") -- Disable c-z suspend
+-- Disable c-z suspend
+map("n", "<c-z>", "<Nop>")
 
 -- Disable command-line window
 map("n", "q:", "<Nop>")
@@ -8,13 +9,12 @@ map("n", "q/", "<Nop>")
 map("n", "q?", "<Nop>")
 
 -- Split moving
-map({ "n", "i" }, "<c-h>", "<c-w>h")
-map({ "n", "i" }, "<c-j>", "<c-w>j")
-map({ "n", "i" }, "<c-k>", "<c-w>k")
-map({ "n", "i" }, "<c-l>", "<c-w>l")
+map({ "n", "i", "t" }, "<c-h>", "<c-w>h")
+map({ "n", "i", "t" }, "<c-j>", "<c-w>j")
+map({ "n", "i", "t" }, "<c-k>", "<c-w>k")
+map({ "n", "i", "t" }, "<c-l>", "<c-w>l")
 
 -- Split resizing
-
 local resize = require("NvRose.base.resize")
 map("n", "<c-s-h>", function()
 	resize.left(1)
@@ -30,7 +30,6 @@ map("n", "<c-s-l>", function()
 end)
 
 -- Split opening
-
 map("n", "<c-s>", "<cmd>sp<cr>")
 map("n", "<c-c>", "<cmd>vs<cr>")
 

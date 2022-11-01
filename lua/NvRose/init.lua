@@ -11,6 +11,10 @@ core.runtime()
 return function(config)
 	vim.api.nvim_command("colorscheme " .. config.colorscheme)
 
+	if config.bootstrap then
+		require("NvRose.util.bootstrap")()
+	end
+
 	if config.vim.lsp.enable then
 		config.plugins["neovim/nvim-lspconfig"] = {
 			config = core.lsp(config.vim.lsp),
@@ -35,10 +39,6 @@ return function(config)
 	end
 
 	vim.defer_fn(function()
-		if config.bootstrap then
-			require("NvRose.util").bootstrap()
-		end
-
 		core.base(config.base)
 		core.plugins(config.plugins)
 	end, 0)

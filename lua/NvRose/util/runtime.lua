@@ -1,5 +1,5 @@
 return function()
-	for i, plugin in ipairs {
+	for i, plugin in ipairs({
 		"2html_plugin",
 		"getscript",
 		"getscriptPlugin",
@@ -30,8 +30,8 @@ return function()
 		"bugreport",
 		"ftplugin",
 		"archlinux",
-		"fzf"
-	} do
+		"fzf",
+	}) do
 		vim.g["loaded_" .. plugin] = 1
 	end
 end

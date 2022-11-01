@@ -14,6 +14,14 @@ vim.api.nvim_create_autocmd({
 				enable = true,
 			},
 
+			playground = {
+				enable = true,
+			},
+
+			matchup = {
+				enable = true,
+			},
+
 			highlight = {
 				enable = true,
 				additional_vim_regex_highlighting = false,

@@ -3,7 +3,7 @@ require("NvRose")({
 	bootstrap = false,
 
 	-- Colorcheme, can be nil
-	colorscheme = "catppuccin",
+	colorscheme = "duotone",
 
 	-- Hide cmd when not used (+1 line to see more code)
 	autohide_cmd = true,
@@ -30,6 +30,13 @@ require("NvRose")({
 		-- Needed by tabline
 		["nvim-tree/nvim-web-devicons"] = {},
 
+		-- Matchit and MatchParen better replacement
+		["andymass/vim-matchup"] = {
+			config = function()
+				vim.g.matchup_matchparen_offscreen = { ["method"] = "status_manual" }
+			end,
+		},
+
 		-- Welcome page (optional)
 		["glepnir/dashboard-nvim"] = {
 			config = function()
@@ -44,31 +51,18 @@ require("NvRose")({
 			end,
 		},
 
-		-- Default colorscheme (optional)
-		["catppuccin/nvim"] = {
-			as = "catppuccin",
-			run = ":CatppuccinCompile",
-			config = function()
-				require("plugins.catppuccin")
-			end,
-		},
-
 		-- Better colors (optional but highly recommended)
 		["nvim-treesitter/nvim-treesitter"] = {
-			ft = { "lua", "c", "html", "javascript", "json", "css" },
 			run = ":TSUpdate",
-			cmd = {
-				"TSInstall",
-				"TSBufEnable",
-				"TSBufDisable",
-				"TSEnable",
-				"TSDisable",
-				"TSModuleInfo",
-			},
 			config = function()
 				require("plugins.treesitter")
 			end,
 		},
+
+		-- Optional treesitter plugin
+		--[[ ["nvim-treesitter/playground"] = {
+			after = "nvim-treesitter",
+		}, ]]
 
 		-- Picker (optional)
 		["nvim-telescope/telescope.nvim"] = {

@@ -26,10 +26,12 @@ if ok then
 		pickers = {
 			find_files = {
 				theme = "dropdown",
+				prompt_title = "",
 				preview_title = false,
 			},
 			live_grep = {
 				theme = "dropdown",
+				prompt_title = "",
 				preview_title = false,
 			},
 		},

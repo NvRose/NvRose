@@ -13,14 +13,26 @@ if ok then
 	cmp.setup({
 		window = {
 			completion = {
+				autocomplete = true,
+				keyword_lenght = 2,
+				scrolloff = 3,
 				border = "rounded",
-				col_offset = -5,
 			},
 
 			documentation = {
-				border = "rounded",
 				winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+				border = "rounded",
 			},
+		},
+
+		matching = {
+			disallow_fuzzy_matching = false,
+			disallow_partial_matching = false,
+			disallow_prefix_unmatching = false,
+		},
+
+		experimental = {
+			ghost_text = true,
 		},
 
 		mapping = {
