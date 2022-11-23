@@ -5,7 +5,7 @@ if ok then
 		padding = true,
 		sticky = true,
 		ignore = nil,
-		opleader = { block = '<c-_>' },
-		toggler = { block = '<c-_>' }
+		opleader = { block = '<c-/>' },
+		toggler = { block = '<c-/>' }
 	}
 end

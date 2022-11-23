@@ -1,5 +1,5 @@
 return function()
-	for i, plugin in ipairs({
+	for _, plugin in ipairs({
 		-- "2html_plugin",
 		"getscript",
 		"getscriptPlugin",

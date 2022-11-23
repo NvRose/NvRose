@@ -20,5 +20,4 @@ vim.opt.sidescrolloff = 8
 vim.opt.updatetime = 300
 vim.opt.guicursor = "n-v-c-i:block"
 vim.opt.fillchars = { eob = " " }
-vim.opt.textwidth = 100
 vim.opt.autoindent = true

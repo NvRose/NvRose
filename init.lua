@@ -1,49 +1,44 @@
 require("NvRose")({
-	-- Fresh install (comment/remove after installation)
-	bootstrap = false,
-
-	-- Colorcheme, can be nil
+	bootstrap = false, -- Comment after installation
 	colorscheme = "duotone",
-
-	-- Hide cmd when not used (+1 line to see more code)
 	autohide_cmd = true,
-
-	-- :LuaCacheProfile
-	startup_profile = false,
-
+	startup_profile = true,
 	snippets = true,
 
-	-- Builtin plugins
-	base = {
-		["trim"] = { enable = true --[[, ...options ]] },
-		["terminal"] = { enable = true --[[, ...options ]] },
-		["statusline"] = { enable = true --[[, ...options ]] },
-		["tabline"] = { enable = true --[[, ...options ]] },
-		["resize"] = { enable = true --[[, ...options ]] },
+	base = { -- Builtin plugins
+		["trim"] = { enable = true },
+		["terminal"] = { enable = true },
+		["statusline"] = { enable = true },
+		["tabline"] = { enable = true },
+		["resize"] = { enable = true }
 	},
 
 	-- See plugins options at: https://github.com/wbthomason/packer.nvim
 	plugins = {
-		-- Tabline icons (optional)
-		["nvim-tree/nvim-web-devicons"] = {},
+		"nvim-tree/nvim-web-devicons",
+		"nvim-treesitter/playground",
+		"lewis6991/impatient.nvim",
+		"neovim/nvim-lspconfig",
 
-		["nvim-treesitter/playground"] = {},
+		["nvim-treesitter/nvim-treesitter"] = {
+			run = ":TSUpdateSync",
+			config = function()
+				require("plugins.treesitter")
+			end,
+		},
 
-		-- Matchit and MatchParen better replacement
 		["andymass/vim-matchup"] = {
 			config = function()
 				vim.g.matchup_matchparen_offscreen = { ["method"] = "status_manual" }
 			end,
 		},
 
-		-- Color hex strings etc (optional)
 		["norcalli/nvim-colorizer.lua"] = {
 			config = function()
 				require("colorizer").setup()
 			end,
 		},
 
-		-- Picker (optional)
 		["nvim-telescope/telescope.nvim"] = {
 			requires = { "nvim-lua/plenary.nvim" },
 			tag = "0.1.0",
@@ -54,15 +49,6 @@ require("NvRose")({
 			end,
 		},
 
-		-- Comment mappings like in vsc (ctrl-/) (optional)
-		["numToStr/Comment.nvim"] = {
-			event = "BufWinEnter",
-			config = function()
-				require("plugins.comment")
-			end,
-		},
-
-		-- Autocompletion (optional but highly recommended)
 		["hrsh7th/nvim-cmp"] = {
 			requires = {
 				{ "L3MON4D3/LuaSnip", run = "make install_jsregexp" },
@@ -78,7 +64,13 @@ require("NvRose")({
 			end,
 		},
 
-		-- Autoclose brackets (optional)
+		["numToStr/Comment.nvim"] = {
+			event = "BufWinEnter",
+			config = function()
+				require("plugins.comment")
+			end,
+		},
+
 		["windwp/nvim-autopairs"] = {
 			event = "InsertEnter",
 			config = function()
@@ -119,13 +111,11 @@ require("NvRose")({
 				{ "n", "[d", vim.diagnostic.goto_prev },
 				{ "n", "gd", vim.lsp.buf.definition },
 				{ "n", "K", vim.lsp.buf.hover },
-				{
-					"n",
-					"gf",
+				{ "n", "gf",
 					function()
 						vim.lsp.buf.code_action({ apply = true })
-					end,
-				},
+					end
+				}
 			},
 
 			-- See more configurations at: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
@@ -141,13 +131,7 @@ require("NvRose")({
 						"--malloc-trim",
 					},
 				},
-
 				cssls = {},
-
-				pyright = {},
-				rust_analyzer = {},
-				tsserver = {},
-
 				sumneko_lua = {
 					settings = {
 						Lua = {
