@@ -24,6 +24,10 @@ return function(config)
 		config.plugins["nvim-tree/nvim-web-devicons"] = {}
 	end
 
+	if config.snippets then
+		require("snippet")
+	end
+
 	if config.autohide_cmd then
 		local group = vim.api.nvim_create_augroup("CmdlineLeave", {})
 		vim.api.nvim_create_autocmd("CmdlineEnter", {

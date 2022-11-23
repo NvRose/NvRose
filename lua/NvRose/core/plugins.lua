@@ -43,15 +43,6 @@ return function(plugins)
 
 	packer.use({
 		"nvim-treesitter/nvim-treesitter",
-		event = { "BufRead", "BufWinEnter", "BufNewFile" },
-		cmd = {
-			"TSInstall",
-			"TSBufEnable",
-			"TSBufDisable",
-			"TSEnable",
-			"TSDisable",
-			"TSModuleInfo",
-		},
 		run = ":TSUpdateSync",
 		config = function()
 			require("plugins.treesitter")

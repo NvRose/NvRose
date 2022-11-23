@@ -9,10 +9,18 @@ map("n", "q/", "<Nop>")
 map("n", "q?", "<Nop>")
 
 -- Split moving
-map({ "n", "i", "t" }, "<c-h>", "<c-w>h")
-map({ "n", "i", "t" }, "<c-j>", "<c-w>j")
-map({ "n", "i", "t" }, "<c-k>", "<c-w>k")
-map({ "n", "i", "t" }, "<c-l>", "<c-w>l")
+map("i", "<c-h>", [[<C-\><C-N><C-w>h]])
+map("i", "<c-j>", [[<C-\><C-N><C-w>j]])
+map("i", "<c-k>", [[<C-\><C-N><C-w>k]])
+map("i", "<c-l>", [[<C-\><C-N><C-w>l]])
+map("n", "<c-h>", "<c-w>h")
+map("n", "<c-j>", "<c-w>j")
+map("n", "<c-k>", "<c-w>k")
+map("n", "<c-l>", "<c-w>l")
+map("t", "<c-h>", [[<C-\><C-N><C-w>h]])
+map("t", "<c-j>", [[<C-\><C-N><C-w>j]])
+map("t", "<c-k>", [[<C-\><C-N><C-w>k]])
+map("t", "<c-l>", [[<C-\><C-N><C-w>l]])
 
 -- Split resizing
 local resize = require("NvRose.base.resize")
@@ -20,21 +28,14 @@ map("n", "<c-s-h>", function()
 	resize.left(1)
 end)
 map("n", "<c-s-j>", function()
-	resize.up(1)
+	resize.down(1)
 end)
 map("n", "<c-s-k>", function()
-	resize.down(1)
+	resize.up(1)
 end)
 map("n", "<c-s-l>", function()
 	resize.right(1)
 end)
-
--- Split opening
-map("n", "<c-s>", "<cmd>sp<cr>")
-map("n", "<c-c>", "<cmd>vs<cr>")
-
--- Quiting buffer
-map("n", "qq", "<cmd>:q<cr>")
 
 -- Searching
 map("n", "<space>", "/")
@@ -46,10 +47,6 @@ map("n", "<c-i>", "<End>")
 
 -- Next found char
 map("n", ".", ";")
-
--- Faster moving
-map("n", "J", "5j")
-map("n", "K", "5k")
 
 -- telescope
 map("n", "<c-n>", '<cmd>lua require("telescope.builtin").find_files()<cr>')

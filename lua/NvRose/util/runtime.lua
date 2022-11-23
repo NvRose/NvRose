@@ -1,6 +1,6 @@
 return function()
 	for i, plugin in ipairs({
-		"2html_plugin",
+		-- "2html_plugin",
 		"getscript",
 		"getscriptPlugin",
 		"gzip",

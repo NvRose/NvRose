@@ -1,6 +1,6 @@
 require("NvRose")({
 	-- Fresh install (comment/remove after installation)
-	bootstrap = true,
+	bootstrap = false,
 
 	-- Colorcheme, can be nil
 	colorscheme = "duotone",
@@ -9,26 +9,25 @@ require("NvRose")({
 	autohide_cmd = true,
 
 	-- :LuaCacheProfile
-	startup_profile = true,
+	startup_profile = false,
+
+	snippets = true,
 
 	-- Builtin plugins
 	base = {
-		["trim"] = {
-			enable = true,
-			trailing = true,
-			last_line = true,
-			first_line = true,
-		},
-		["terminal"] = { enable = true },
-		["statusline"] = { enable = true },
-		["tabline"] = { enable = true },
-		["resize"] = { enable = true },
+		["trim"] = { enable = true --[[, ...options ]] },
+		["terminal"] = { enable = true --[[, ...options ]] },
+		["statusline"] = { enable = true --[[, ...options ]] },
+		["tabline"] = { enable = true --[[, ...options ]] },
+		["resize"] = { enable = true --[[, ...options ]] },
 	},
 
 	-- See plugins options at: https://github.com/wbthomason/packer.nvim
 	plugins = {
 		-- Tabline icons (optional)
 		["nvim-tree/nvim-web-devicons"] = {},
+
+		["nvim-treesitter/playground"] = {},
 
 		-- Matchit and MatchParen better replacement
 		["andymass/vim-matchup"] = {
@@ -57,7 +56,6 @@ require("NvRose")({
 
 		-- Comment mappings like in vsc (ctrl-/) (optional)
 		["numToStr/Comment.nvim"] = {
-			ft = { "c", "lua" },
 			event = "BufWinEnter",
 			config = function()
 				require("plugins.comment")
@@ -82,18 +80,9 @@ require("NvRose")({
 
 		-- Autoclose brackets (optional)
 		["windwp/nvim-autopairs"] = {
-			ft = { "c", "lua" },
 			event = "InsertEnter",
 			config = function()
 				require("nvim-autopairs").setup()
-			end,
-		},
-
-		-- Autoformat (optional)
-		["jose-elias-alvarez/null-ls.nvim"] = {
-			requires = { "nvim-lua/plenary.nvim" },
-			config = function()
-				require("plugins.null-ls")
 			end,
 		},
 	},
@@ -116,8 +105,10 @@ require("NvRose")({
 			},
 
 			diagnostic = {
-				virtual_text = false,
-				signs = true,
+				virtual_text = {
+					prefix = "●"
+				},
+				signs = false,
 				underline = true,
 				update_in_insert = false,
 			},
@@ -127,6 +118,7 @@ require("NvRose")({
 				{ "n", "]d", vim.diagnostic.goto_next },
 				{ "n", "[d", vim.diagnostic.goto_prev },
 				{ "n", "gd", vim.lsp.buf.definition },
+				{ "n", "K", vim.lsp.buf.hover },
 				{
 					"n",
 					"gf",
@@ -149,6 +141,8 @@ require("NvRose")({
 						"--malloc-trim",
 					},
 				},
+
+				cssls = {},
 
 				pyright = {},
 				rust_analyzer = {},

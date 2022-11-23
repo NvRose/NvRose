@@ -15,26 +15,15 @@ return function(config)
 
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 
+	local on_attach = function()
+		for _, i in ipairs(config.mappings) do
+			vim.keymap.set(i[1], i[2], i[3])
+		end
+	end
+
 	for k, v in pairs(config.servers) do
 		v.capabilities = capabilities
 		v.on_attach = on_attach
 		lspconfig[k].setup(v)
 	end
-
-	vim.api.nvim_create_autocmd("CursorHold", {
-		buffer = bufnr,
-		callback = function()
-			vim.diagnostic.open_float(nil, {
-				focusable = false,
-				close_events = {
-					"BufLeave",
-					"CursorMoved",
-					"InsertEnter",
-					"FocusLost",
-				},
-				border = "rounded",
-				scope = "cursor",
-			})
-		end,
-	})
 end
