@@ -1,5 +1,6 @@
 return function(config)
 	vim.diagnostic.config(config.diagnostic)
+	vim.lsp.set_log_level(config.log_level)
 
 	for k, v in pairs(config.icons) do
 		local hl = "DiagnosticSign" .. k

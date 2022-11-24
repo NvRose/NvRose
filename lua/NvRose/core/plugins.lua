@@ -24,7 +24,10 @@ return function(plugins)
 		},
 	})
 
-	packer.use("wbthomason/packer.nvim")
+	packer.use {
+		"wbthomason/packer.nvim",
+		opt = true
+	}
 
 	for k, v in pairs(plugins) do
 		if type(v) == "string" then

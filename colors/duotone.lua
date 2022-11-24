@@ -8,22 +8,6 @@ vim.g.colors_name = "duotone"
 vim.o.background = "dark"
 vim.o.termguicolors = true
 
-vim.api.nvim_create_autocmd("ModeChanged", {
-	callback = function()
-		local m = vim.fn.mode()
-
-		if m == "v" or m == "V" then
-			vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "#1e1e2e", fg = "#F2CDCD", bold = true })
-		elseif m == "i" or m == "ic" or m == "ix" then
-			vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "#1e1e2e", fg = "#F2CDCD", bold = true })
-			vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1e1e2e" })
-		else
-			vim.api.nvim_set_hl(0, "CursorLine", { bg = "#181825" })
-			vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "#181825", fg = "#F2CDCD", bold = true })
-		end
-	end,
-})
-
 -- VIM
 vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "PmenuSel", { bold = true })
@@ -41,8 +25,8 @@ vim.api.nvim_set_hl(0, "StorageClass", { link = "@string.escape" })
 vim.api.nvim_set_hl(0, "Constant", { link = "@string" })
 vim.api.nvim_set_hl(0, "cssDefinition", { link = "@string.escape" })
 vim.api.nvim_set_hl(0, "Number", { link = "@number" })
-vim.api.nvim_set_hl(0, "StatusLineFill", { bg = "NONE" })
-vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "#181825", fg = "#F2CDCD", bold = true })
+vim.api.nvim_set_hl(0, "StatusLineFill", { bg = "#181825" })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#F2CDCD", bold = true })
 vim.api.nvim_set_hl(0, "LineNr", { fg = "#45475A" })
 vim.api.nvim_set_hl(0, "Visual", { bold = true, bg = "#45475A" })
 vim.api.nvim_set_hl(0, "TabLine", { bg = "#181825" })
@@ -57,6 +41,8 @@ vim.api.nvim_set_hl(0, "VertSplit", { link = "Conceal" })
 vim.api.nvim_set_hl(0, "Comment", { link = "@comment" })
 vim.api.nvim_set_hl(0, "Title", { link = "@constant.macro" })
 vim.api.nvim_set_hl(0, "manFooter", { link = "@constant.macro" })
+vim.api.nvim_set_hl(0, "ErrorMsg", { link = "@text.danger" })
+vim.api.nvim_set_hl(0, "WarningMsg", { link = "@text.warning" })
 
 -- TREESITTER
 vim.api.nvim_set_hl(0, "@constant.macro", { fg = "#B4BEFE" })
@@ -72,7 +58,7 @@ vim.api.nvim_set_hl(0, "@constant", { fg = "#CBA6F7" })
 vim.api.nvim_set_hl(0, "@number", { fg = "#F2CDCD" })
 vim.api.nvim_set_hl(0, "@boolean", { link = "@number" })
 vim.api.nvim_set_hl(0, "@string.escape", { fg = "#EBA0AC" })
-vim.api.nvim_set_hl(0, "@error", { link = "@string.escape" })
+vim.api.nvim_set_hl(0, "@error", { link = "@function.macro" })
 
 vim.api.nvim_set_hl(0, "@keyword", { link = "@constant.macro" })
 vim.api.nvim_set_hl(0, "@type", { fg = "#cba6f7", italic = true })
@@ -103,15 +89,15 @@ vim.api.nvim_set_hl(0, "@text.warning", { fg = "#F9E2AF", bold = true })
 vim.api.nvim_set_hl(0, "@text.note", { fg = "#89b4fa", bold = true })
 
 -- LSP DIAGNOSTIC
-vim.api.nvim_set_hl(0, "DiagnosticHint", { bg = "NONE", fg = "#94E2D5" })
-vim.api.nvim_set_hl(0, "DiagnosticInfo", { bg = "NONE", fg = "#89DCEB" })
-vim.api.nvim_set_hl(0, "DiagnosticWarn", { bg = "NONE", fg = "#F9E2AF" })
-vim.api.nvim_set_hl(0, "DiagnosticError", { bg = "NONE", fg = "#F38BA8" })
+vim.api.nvim_set_hl(0, "DiagnosticHint", { bg = "#181825", fg = "#94E2D5" })
+vim.api.nvim_set_hl(0, "DiagnosticInfo", { bg = "#181825", fg = "#89DCEB" })
+vim.api.nvim_set_hl(0, "DiagnosticWarn", { bg = "#181825", fg = "#F9E2AF" })
+vim.api.nvim_set_hl(0, "DiagnosticError", { bg = "#181825", fg = "#F38BA8" })
 
-vim.api.nvim_set_hl(0, "LspDiagnosticsError", { fg = "#F38BA8" })
-vim.api.nvim_set_hl(0, "LspDiagnosticsWarn", { fg = "#F9E2AF" })
-vim.api.nvim_set_hl(0, "LspDiagnosticsInfo", { fg = "#89DCEB" })
-vim.api.nvim_set_hl(0, "LspDiagnosticsHint", { fg = "#94E2D5" })
+vim.api.nvim_set_hl(0, "LspDiagnosticsError", { link = "DiagnosticError" })
+vim.api.nvim_set_hl(0, "LspDiagnosticsWarn", { link = "DiagnosticWarn" })
+vim.api.nvim_set_hl(0, "LspDiagnosticsInfo", { link = "DiagnosticInfo" })
+vim.api.nvim_set_hl(0, "LspDiagnosticsHint", { link = "DiagnosticHint" })
 
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { underline = true, sp = "#94E2D5" })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { underline = true, sp = "#F38BA8" })

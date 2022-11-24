@@ -45,6 +45,13 @@ map("n", "<s-space>", "?")
 map("n", "<c-a>", "<Home>")
 map("n", "<c-i>", "<End>")
 
+-- Tabs
+map("n", "<a-h>", "<cmd>tabp<cr>")
+map("n", "<a-l>", "<cmd>tabn<cr>")
+
+map("n", "<a-s-h>", "<cmd>sil! -tabm<cr>")
+map("n", "<a-s-l>", "<cmd>sil! +tabm<cr>")
+
 -- Next found char
 map("n", ".", ";")
 

@@ -1,6 +1,5 @@
 vim.opt.clipboard = "unnamedplus"
 vim.opt.inccommand = "nosplit"
-vim.opt.signcolumn = "number"
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.swapfile = false
@@ -21,3 +20,5 @@ vim.opt.updatetime = 300
 vim.opt.guicursor = "n-v-c-i:block"
 vim.opt.fillchars = { eob = " " }
 vim.opt.autoindent = true
+vim.opt.lazyredraw = true
+vim.opt.number = true

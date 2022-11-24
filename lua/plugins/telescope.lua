@@ -1,6 +1,4 @@
-local ok, telescope = pcall(require, "telescope")
-
-if ok then
+return function()
 	local actions = require("telescope.actions")
 
 	require("telescope").setup({

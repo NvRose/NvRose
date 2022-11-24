@@ -1,8 +1,8 @@
-require("NvRose")({
+require "NvRose" {
 	bootstrap = false, -- Comment after installation
 	colorscheme = "duotone",
 	autohide_cmd = true,
-	startup_profile = true,
+	startup_profile = false,
 	snippets = true,
 
 	base = { -- Builtin plugins
@@ -22,31 +22,24 @@ require("NvRose")({
 
 		["nvim-treesitter/nvim-treesitter"] = {
 			run = ":TSUpdateSync",
-			config = function()
-				require("plugins.treesitter")
-			end,
+			config = require("plugins.treesitter")
 		},
 
 		["andymass/vim-matchup"] = {
 			config = function()
 				vim.g.matchup_matchparen_offscreen = { ["method"] = "status_manual" }
-			end,
+			end
 		},
 
 		["norcalli/nvim-colorizer.lua"] = {
-			config = function()
-				require("colorizer").setup()
-			end,
+			config = require("plugins.colorizer")
 		},
 
 		["nvim-telescope/telescope.nvim"] = {
 			requires = { "nvim-lua/plenary.nvim" },
 			tag = "0.1.0",
 			event = "BufWinEnter",
-			cmd = { "Telescope" },
-			config = function()
-				require("plugins.telescope")
-			end,
+			config = require("plugins.telescope")
 		},
 
 		["hrsh7th/nvim-cmp"] = {
@@ -59,23 +52,17 @@ require("NvRose")({
 				"onsails/lspkind.nvim",
 				"hrsh7th/cmp-path",
 			},
-			config = function()
-				require("plugins.cmp")
-			end,
+			config = require("plugins.cmp")
 		},
 
 		["numToStr/Comment.nvim"] = {
 			event = "BufWinEnter",
-			config = function()
-				require("plugins.comment")
-			end,
+			config = require("plugins.comment")
 		},
 
 		["windwp/nvim-autopairs"] = {
 			event = "InsertEnter",
-			config = function()
-				require("nvim-autopairs").setup()
-			end,
+			config = require("plugins.autopairs")
 		},
 	},
 
@@ -87,7 +74,7 @@ require("NvRose")({
 		-- Lsp config
 		lsp = {
 			enable = true,
-			diagnostic_on_hover = true,
+			log_level = vim.log.levels.OFF,
 
 			icons = {
 				["Error"] = "",
@@ -135,25 +122,13 @@ require("NvRose")({
 				sumneko_lua = {
 					settings = {
 						Lua = {
-							diagnostics = {
-								globals = { "vim" },
-							},
-
-							runtime = {
-								version = "LuaJIT",
-							},
-
-							workspace = {
-								library = vim.api.nvim_get_runtime_file("", true),
-							},
-
-							telemetry = {
-								enable = false,
-							},
+							diagnostics = { globals = { "vim" } },
+							runtime = { version = "LuaJIT" },
+							telemetry = { enable = false },
 						},
 					},
 				},
 			},
 		},
-	},
-})
+	}
+}
