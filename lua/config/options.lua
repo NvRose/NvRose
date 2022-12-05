@@ -19,6 +19,10 @@ vim.opt.sidescrolloff = 8
 vim.opt.updatetime = 300
 vim.opt.guicursor = "n-v-c-i:block"
 vim.opt.fillchars = { eob = " " }
+vim.opt.shortmess:append("aSIcq")
 vim.opt.autoindent = true
+vim.opt.smartindent = true
 vim.opt.lazyredraw = true
 vim.opt.number = true
+
+vim.opt.cindent = true

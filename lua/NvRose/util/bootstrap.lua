@@ -14,7 +14,6 @@ return function(plugins)
 		})
 
 		require("NvRose.core").plugins(plugins)
-
-		vim.cmd("PackerSync")
+		require("packer").sync()
 	end
 end

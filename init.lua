@@ -2,7 +2,7 @@ require "NvRose" {
 	bootstrap = false, -- Comment after installation
 	colorscheme = "duotone",
 	autohide_cmd = true,
-	startup_profile = false,
+	startup_profile = true,
 	snippets = true,
 
 	base = { -- Builtin plugins
@@ -19,6 +19,18 @@ require "NvRose" {
 		"nvim-treesitter/playground",
 		"lewis6991/impatient.nvim",
 		"neovim/nvim-lspconfig",
+		"nathom/filetype.nvim",
+
+		["folke/zen-mode.nvim"] = {
+			event = "BufWinEnter",
+			config = function()
+				require("zen-mode").setup {
+					options = {
+						number = false
+					}
+				}
+			end
+		},
 
 		["nvim-treesitter/nvim-treesitter"] = {
 			run = ":TSUpdateSync",
@@ -26,33 +38,53 @@ require "NvRose" {
 		},
 
 		["andymass/vim-matchup"] = {
-			config = function()
-				vim.g.matchup_matchparen_offscreen = { ["method"] = "status_manual" }
-			end
+			event = "BufWinEnter",
+			config = require("plugins.matchup")
 		},
 
 		["norcalli/nvim-colorizer.lua"] = {
+			event = "BufWinEnter",
 			config = require("plugins.colorizer")
 		},
 
 		["nvim-telescope/telescope.nvim"] = {
-			requires = { "nvim-lua/plenary.nvim" },
 			tag = "0.1.0",
+			requires = { "nvim-lua/plenary.nvim" },
 			event = "BufWinEnter",
 			config = require("plugins.telescope")
 		},
 
+		["L3MON4D3/LuaSnip"] = {
+			run = "make install_jsregexp",
+		},
+
 		["hrsh7th/nvim-cmp"] = {
-			requires = {
-				{ "L3MON4D3/LuaSnip", run = "make install_jsregexp" },
-				"saadparwaiz1/cmp_luasnip",
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-cmdline",
-				"hrsh7th/cmp-buffer",
-				"onsails/lspkind.nvim",
-				"hrsh7th/cmp-path",
-			},
+			event = "InsertEnter",
 			config = require("plugins.cmp")
+		},
+
+		["saadparwaiz1/cmp_luasnip"] = {
+			after = "nvim-cmp"
+		},
+
+		["hrsh7th/cmp-nvim-lsp"] = {
+			after = "nvim-cmp"
+		},
+
+		["hrsh7th/cmp-cmdline"] = {
+			after = "nvim-cmp"
+		},
+
+		["hrsh7th/cmp-buffer"] = {
+			after = "nvim-cmp"
+		},
+
+		["onsails/lspkind.nvim"] = {
+			after = "nvim-cmp"
+		},
+
+		["hrsh7th/cmp-path"] = {
+			after = "nvim-cmp"
 		},
 
 		["numToStr/Comment.nvim"] = {
@@ -98,7 +130,7 @@ require "NvRose" {
 				{ "n", "[d", vim.diagnostic.goto_prev },
 				{ "n", "gd", vim.lsp.buf.definition },
 				{ "n", "K", vim.lsp.buf.hover },
-				{ "n", "gf",
+				{ "n", "<a-cr>",
 					function()
 						vim.lsp.buf.code_action({ apply = true })
 					end
@@ -106,7 +138,7 @@ require "NvRose" {
 			},
 
 			-- See more configurations at: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-			-- Below configs are only example, keep in mind that you shall add filetypes to needed plugins
+			-- Below configs are only example.
 			servers = {
 				clangd = {
 					cmd = {
@@ -119,6 +151,7 @@ require "NvRose" {
 					},
 				},
 				cssls = {},
+				rust_analyzer = {},
 				sumneko_lua = {
 					settings = {
 						Lua = {
