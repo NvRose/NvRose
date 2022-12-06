@@ -2,7 +2,7 @@ require "NvRose" {
 	bootstrap = false, -- Comment after installation
 	colorscheme = "duotone",
 	autohide_cmd = true,
-	startup_profile = true,
+	startup_profile = false,
 	snippets = true,
 
 	base = { -- Builtin plugins

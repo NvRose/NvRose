@@ -6,18 +6,14 @@ core.providers()
 core.runtime()
 
 return function(config)
+	require("NvRose.util.bootstrap")(config.plugins)
+
 	if config.colorscheme then
 		vim.api.nvim_command("colorscheme " .. config.colorscheme)
 	end
 
 	if config.startup_profile and impatient_ok then
 		impatient.enable_profile()
-	end
-
-	if config.bootstrap then
-		require("NvRose.util.bootstrap")(config.plugins)
-	else
-		core.plugins(config.plugins)
 	end
 
 	if config.base["tabline"].enable then

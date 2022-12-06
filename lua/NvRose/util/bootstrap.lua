@@ -12,8 +12,8 @@ return function(plugins)
 			"https://github.com/wbthomason/packer.nvim",
 			install_path,
 		})
-
-		require("NvRose.core").plugins(plugins)
 		require("packer").sync()
 	end
+
+	require("NvRose.core").plugins(plugins)
 end
