@@ -1,5 +1,4 @@
 require "NvRose" {
-	bootstrap = false, -- Comment after installation
 	colorscheme = "duotone",
 	autohide_cmd = true,
 	startup_profile = false,
@@ -16,21 +15,9 @@ require "NvRose" {
 	-- See plugins options at: https://github.com/wbthomason/packer.nvim
 	plugins = {
 		"nvim-tree/nvim-web-devicons",
-		"nvim-treesitter/playground",
 		"lewis6991/impatient.nvim",
 		"neovim/nvim-lspconfig",
 		"nathom/filetype.nvim",
-
-		["folke/zen-mode.nvim"] = {
-			event = "BufWinEnter",
-			config = function()
-				require("zen-mode").setup {
-					options = {
-						number = false
-					}
-				}
-			end
-		},
 
 		["nvim-treesitter/nvim-treesitter"] = {
 			run = ":TSUpdateSync",
@@ -140,18 +127,9 @@ require "NvRose" {
 			-- See more configurations at: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 			-- Below configs are only example.
 			servers = {
-				clangd = {
-					cmd = {
-						"clangd",
-						"--pch-storage=memory",
-						"--clang-tidy",
-						"--background-index",
-						"--header-insertion=iwyu",
-						"--malloc-trim",
-					},
-				},
+				clangd = {},
+				pylsp = {},
 				cssls = {},
-				rust_analyzer = {},
 				sumneko_lua = {
 					settings = {
 						Lua = {

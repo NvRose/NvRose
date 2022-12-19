@@ -17,16 +17,16 @@ map("n", "<c-h>", "<c-w>h")
 map("n", "<c-j>", "<c-w>j")
 map("n", "<c-k>", "<c-w>k")
 map("n", "<c-l>", "<c-w>l")
-map("t", "<c-h>", [[<C-\><C-N><C-w>h]])
+
 map("t", "<c-j>", [[<C-\><C-N><C-w>j]])
 map("t", "<c-k>", [[<C-\><C-N><C-w>k]])
-map("t", "<c-l>", [[<C-\><C-N><C-w>l]])
 
 -- Split resizing
 local resize = require("NvRose.base.resize")
 map("n", "<c-s-h>", function()
 	resize.left(1)
 end)
+
 map("n", "<c-s-j>", function()
 	resize.down(1)
 end)
